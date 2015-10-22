@@ -1,0 +1,7 @@
+request:
+	  url: /anything
+	  method: GET
+response:
+	  file: file.json
+	  headers:
+	    Content-Type: application/json
