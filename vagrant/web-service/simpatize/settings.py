@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'simpatize',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': ''
+        'USER': 'dev',
+        'PASSWORD': '1234',
+        'HOST': 'localhost'
     }
 }
 
