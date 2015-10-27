@@ -1,4 +1,4 @@
-Simpatize
+Simpatize.
 
 Before you run the code, execute this command in project root folder:
 
