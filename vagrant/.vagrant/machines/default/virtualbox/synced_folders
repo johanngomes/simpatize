@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/jgomes/git/simpatize/vagrant","disabled":false}}}
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/jgomes/git/simpatize/vagrant","disabled":false},"/vagrant_data":{"guestpath":"/vagrant_data","hostpath":"/Users/jgomes/git/simpatize","disabled":false}}}
