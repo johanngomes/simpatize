@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', 'simpatize.views.index'),
+    url(r'^result/', 'simpatize.views.result'),
     url(r'^admin/', include(admin.site.urls)),
 ]
