@@ -1,18 +1,19 @@
-import json
-
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 
-from src.QueryHelper import QueryHelper
+from src.PlaceHelper import PlaceHelper
+from src.Requests import Requests
 
 
 def index(request):
-    template = loader.get_template('templates/index.html')
+    template = loader.get_template("templates/index.html")
     return HttpResponse(template.render())
 
 
-def result(request):
-    QueryHelper.identify_query(request.GET)
+def search(request):
+    json = Requests.request_recife_metropolitan_area_places(request.GET["place_name"])
 
-    data = {"foo": "bar", "hello": "world"}
-    return HttpResponse(json.dumps(data), content_type="application/json")
+    PlaceHelper.fill_places(json)
+
+    return render(request, "templates/search.html", {"places": PlaceHelper.places})

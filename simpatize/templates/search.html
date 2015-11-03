@@ -1,0 +1,9 @@
+{% extends "templates/base.html" %}
+
+{% block content %}
+    {% for place in places %}
+        <div>
+            {{ place.name }}
+        </div>
+    {% endfor %}
+{% endblock content %}

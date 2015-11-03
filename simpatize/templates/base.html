@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <title>Simpatize</title>
+</head>
+
+<body>
+    <form action="/search/" method="get">
+        <label for="place_name">Place name: </label>
+        <input id="place_name" type="text" name="place_name" value="{{ current_place_name }}"/>
+        <input type="Submit" value="SEARCH">
+    </form>
+
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+
+</html>
