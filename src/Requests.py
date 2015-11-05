@@ -13,7 +13,7 @@ class Requests:
         types = ""
         name = place_name
         url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" \
-              "location={},{}&radius={}&types={}&name={}&key={}".format(latitude, longitude,
+            "location={},{}&radius={}&types={}&name={}&key={}".format(latitude, longitude,
                                                                         radius, types, name,
                                                                         GOOGLE_PLACES_API_KEY)
 

@@ -1,5 +1,4 @@
-from pprint import pprint
-from src.Place import Place
+from simpatize.models import Place
 
 
 class PlaceHelper:
@@ -7,12 +6,12 @@ class PlaceHelper:
     places = []
 
     @staticmethod
-    def add_place(place):
-        PlaceHelper.places.append(place)
+    def extract_places(json):
 
-    @staticmethod
-    def fill_places(json):
         PlaceHelper.places = []
         results = json["results"]
+
         for place in results:
-            PlaceHelper.places.append(Place(place["name"], place["types"], place["vicinity"]))
+            PlaceHelper.places.append(Place.objects.create(
+                name=place["name"], types=place["types"], vicinity=place["vicinity"])
+            )
