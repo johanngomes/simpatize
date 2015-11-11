@@ -13,5 +13,5 @@ class PlaceHelper:
 
         for place in results:
             PlaceHelper.places.append(Place.objects.create(
-                name=place["name"], types=place["types"], vicinity=place["vicinity"])
+                place_id=place["id"], name=place["name"], types=place["types"], vicinity=place["vicinity"])
             )

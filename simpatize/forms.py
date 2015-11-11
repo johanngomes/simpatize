@@ -1,1 +1,0 @@
-# use this class for POST forms, like user registration
