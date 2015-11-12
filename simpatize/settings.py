@@ -77,13 +77,29 @@ WSGI_APPLICATION = 'simpatize.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+database_config = {}
+
+if 'YOUR_ENV_VAR' in os.environ:
+    database_config["NAME"] = "d2q78f1dsq37lg"
+    database_config["USER"] = "jrgqcedhpbwvxx"
+    database_config["PASSWORD"] = "AgBv45XHA7iEybJ9rb0cdoHPNo"
+    database_config["HOST"] = "ec2-54-225-194-162.compute-1.amazonaws.com"
+    database_config["PORT"] = "5432"
+else:
+    database_config["NAME"] = "simpatize"
+    database_config["USER"] = "dev"
+    database_config["PASSWORD"] = "1234"
+    database_config["HOST"] = "localhost"
+    database_config["PORT"] = ""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'simpatize',
-        'USER': 'dev',
-        'PASSWORD': '1234',
-        'HOST': 'localhost'
+        'NAME': database_config["NAME"],
+        'USER': database_config["USER"],
+        'PASSWORD': database_config["PASSWORD"],
+        'HOST': database_config["HOST"],
+        'PORT': database_config["PORT"]
     }
 }
 
