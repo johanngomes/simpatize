@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'simpatize.wsgi.application'
 
 database_config = {}
 
-if 'YOUR_ENV_VAR' in os.environ:
+if 'DYNO' in os.environ:
     database_config["NAME"] = "d2q78f1dsq37lg"
     database_config["USER"] = "jrgqcedhpbwvxx"
     database_config["PASSWORD"] = "AgBv45XHA7iEybJ9rb0cdoHPNo"
