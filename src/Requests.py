@@ -10,7 +10,7 @@ class Requests:
         latitude = "-8.0475622"
         longitude = "-34.8769643"
         radius = "20000"
-        types = ""
+        types = types
         name = place_name
         url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" \
             "location={},{}&radius={}&types={}&name={}&key={}".format(latitude, longitude,
