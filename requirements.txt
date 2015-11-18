@@ -3,3 +3,4 @@ psycopg2==2.6.1
 selenium==2.48.0
 gunicorn==19.3.0
 requests==2.6.0
+behave==1.2.5
