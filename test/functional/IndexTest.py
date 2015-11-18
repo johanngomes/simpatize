@@ -10,6 +10,7 @@ class IndexTest(unittest.TestCase):
 
     def test_simpatize_on_page_title(self):
         self.driver.get("http://localhost:8000/")
+        print(self.driver.title)
         assert "Simpatize" in self.driver.title
 
     def tearDown(self):
