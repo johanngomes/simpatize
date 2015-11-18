@@ -13,6 +13,7 @@ def search(request):
 
     place_name = request.GET["place_name"]
     place_type = request.GET["place_type"]
+    nearby_places = request.GET["nearby_places"]
 
     message = SearchValidation.validate_place_name(place_name)
 
