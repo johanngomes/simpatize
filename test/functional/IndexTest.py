@@ -9,7 +9,7 @@ class IndexTest(unittest.TestCase):
         self.driver = webdriver.Firefox()
 
     def test_simpatize_on_page_title(self):
-        self.driver.get("http://localhost:8000/")
+        self.driver.get("http://127.0.0.1:8000/")
         assert "Simpatize" in self.driver.title
 
     def tearDown(self):
