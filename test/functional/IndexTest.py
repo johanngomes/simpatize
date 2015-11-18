@@ -9,8 +9,8 @@ class IndexTest(unittest.TestCase):
         self.driver = webdriver.PhantomJS()
 
     def test_simpatize_on_page_title(self):
-        self.driver.get("http://localhost:8000/")
-        print(self.driver.title)
+        self.driver.get("http://127.0.0.1:8000/")
+        print(self.driver.page_source)
         assert "Simpatize" in self.driver.title
 
     def tearDown(self):
