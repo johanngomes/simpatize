@@ -1,9 +1,11 @@
 import requests
 
 from simpatize.settings import GOOGLE_PLACES_API_KEY
+from src.SearchValidation import SearchValidation
+from src.Constants import Constants
 
 
-class Requests:
+class RequestsGooglePlaces:
 
     @staticmethod
     def request_recife_metropolitan_area_places(place_name="", types=""):
@@ -17,4 +19,14 @@ class Requests:
                                                                         radius, types, name,
                                                                         GOOGLE_PLACES_API_KEY)
 
-        return requests.get(url).json()
+        json = requests.get(url).json()
+
+        return RequestsGooglePlaces.format_request_result(json)
+
+    @staticmethod
+    def format_request_result(json):
+        if SearchValidation.is_zero_results(json):
+            return {"json": json, "warning_message": Constants.WARNING_PLACE_NOT_FOUND}
+        else:
+            return {"json": json, "warning_message": ""}
+

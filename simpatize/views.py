@@ -1,8 +1,7 @@
 from django.shortcuts import render
 
 from src.PlaceHelper import PlaceHelper
-from src.Requests import Requests
-from src.SearchValidation import SearchValidation
+from src.RequestsGooglePlaces import RequestsGooglePlaces
 
 
 def index(request):
@@ -15,12 +14,10 @@ def search(request):
     place_type = request.GET["place_type"]
     nearby_places = request.GET["nearby_places"]
 
-    message = SearchValidation.validate_place_name(place_name)
+    request_result = RequestsGooglePlaces.request_recife_metropolitan_area_places(place_name, place_type)
 
-    json = Requests.request_recife_metropolitan_area_places(place_name, place_type)
-
-    PlaceHelper.extract_places(json)
+    PlaceHelper.extract_places(request_result["json"])
 
     return render(request, "templates/search.html",
                   {"places": PlaceHelper.places,
-                   "warning_message": message})
+                   "warning_message": request_result["warning_message"]})
