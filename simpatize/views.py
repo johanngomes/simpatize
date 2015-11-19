@@ -17,10 +17,10 @@ def search(request):
 
     message = SearchValidation.validate_place_name(place_name)
 
-    if message["warning_message"] == "":
-        json = Requests.request_recife_metropolitan_area_places(place_name, place_type)
-        PlaceHelper.extract_places(json)
-        return render(request, "templates/search.html",
-                      {"places": PlaceHelper.places})
-    else:
-        return render(request, "templates/search.html", message)
+    json = Requests.request_recife_metropolitan_area_places(place_name, place_type)
+
+    PlaceHelper.extract_places(json)
+
+    return render(request, "templates/search.html",
+                  {"places": PlaceHelper.places,
+                   "warning_message": message})
