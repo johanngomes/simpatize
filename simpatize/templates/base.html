@@ -2,111 +2,117 @@
 
 <head>
     <title>Simpatize</title>
+    <script type="text/javascript" src="/static/js/geolocation.js"></script>
 </head>
 
-<body>
-<form action="/search/" method="get">
-    <div>
-        <label for="place_name">Nome do estabelecimento: </label>
-        <input id="place_name" type="text" name="place_name" value="{{ current_place_name }}"/>
-    </div>
+<body onload="checkNearbyPlacesSelected()">
+
+    <form action="/search/" method="get">
+        <div>
+            <label for="place_name">Nome do estabelecimento: </label>
+            <input id="place_name" type="text" name="place_name" value="{{ current_place_name }}"/>
+        </div>
+
+        <div>
+            <label for="place_type">Tipo do estabelecimento: </label>
+            <select id="place_type" name="place_type">
+                <option value="">--</option>
+                <option value="airport">Aeroporto</option>
+                <option value="amusement_park">Parque de diversões</option>
+                <option value="art_gallery">Galeria de Arte</option>
+                <option value="bakery">Padaria</option>
+                <option value="bank">Banco</option>
+                <option value="bar">Barra</option>
+                <option value="beauty_salon">Salão de beleza</option>
+                <option value="bicycle_store">Loja de bicicletas</option>
+                <option value="book_store">Livraria</option>
+                <option value="bowling_alley">Pista de boliche</option>
+                <option value="cafe">Café</option>
+                <option value="campground">Área de camping</option>
+                <option value="car_dealer">Concessionária</option>
+                <option value="car_rental">Locadora de carros</option>
+                <option value="car_repair">Oficina de carro</option>
+                <option value="car_wash">Lavajato</option>
+                <option value="cemetery">Cemitério</option>
+                <option value="church">Igreja</option>
+                <option value="city_hall">Prefeitura</option>
+                <option value="clothing_store">Loja de roupas</option>
+                <option value="convenience_store">Loja de conveniência</option>
+                <option value="dentist"> Consultório Odontológico</option>
+                <option value="courthouse">Tribunal</option>
+                <option value="department_store">Loja de departamento</option>
+                <option value="doctor"> Consultório médico</option>
+                <option value="embassy">Embaixada</option>
+                <option value="electronics_store">Loja de eletrônicos</option>
+                <option value="establishment">Estabelecimento</option>
+                <option value="finance">Banco</option>
+                <option value="fire_station">Corpo de Bombeiros</option>
+                <option value="florist">Floricultura</option>
+                <option value="food">Restaurante/ lanchonete</option>
+                <option value="funeral_home">Funerária</option>
+                <option value="furniture_store">Loja de móveis</option>
+                <option value="gas_station">Posto de gasolina</option>
+                <option value="grocery_or_supermarket">Supermercado/ Mercado</option>
+                <option value="gym">Academia</option>
+                <option value="hair_care">Salão de beleza</option>
+                <option value="hardware_store">Loja de Informática</option>
+                <option value="home_goods_store">Loja de Móveis e Decoração</option>
+                <option value="hospital">Hospital</option>
+                <option value="insurance_agency">Seguradora</option>
+                <option value="jewelry_store">Joalheria</option>
+                <option value="laundry">Lavanderia</option>
+                <option value="lawyer">Escritório de advocacia</option>
+                <option value="library">Biblioteca</option>
+                <option value="liquor_store">Loja de bebidas</option>
+                <option value="local_government_office">Orgão Público</option>
+                <option value="locksmith">Chaveiro</option>
+                <option value="lodging">Alojamento</option>
+                <option value="movie_rental">Locadora de filme</option>
+                <option value="movie_theater">Cinema</option>
+                <option value="museum">Museu</option>
+                <option value="night_club">Boate</option>
+                <option value="parking">Estacionamento</option>
+                <option value="pet_store">Petshop</option>
+                <option value="pharmacy">Farmácia</option>
+                <option value="physiotherapist">Clínica de Fisioterapia</option>
+                <option value="place_of_worship">Lugar de Culto</option>
+                <option value="police">Delegacia</option>
+                <option value="post_office">Agência dos Correios</option>
+                <option value="real_estate_agency">Agência imobiliária</option>
+                <option value="restaurant">Restaurante</option>
+                <option value="school">Escola</option>
+                <option value="shoe_store">Loja de sapatos</option>
+                <option value="shopping_mall">Shopping</option>
+                <option value="spa">SPA</option>
+                <option value="stadium">Estádio</option>
+                <option value="storage">Armazém</option>
+                <option value="store">Loja</option>
+                <option value="synagogue">Sinagoga</option>
+                <option value="travel_agency">Agência de viagens</option>
+                <option value="university">Universidade</option>
+                <option value="veterinary_care">Clínica veterinária</option>
+                <option value="zoo">Jardim zoológico</option>
+            </select>
+        </div>
+
+        <div id="nearby_places">
+            <label for="nearby_places" onload="checkNearbyPlacesSelected()">Mostrar lugares próximos a mim </label>
+            <input id="nearby_places_yes" name="nearby_places" type="radio" value="yes"
+                   checked="yes" onclick="checkNearbyPlacesSelected()">Sim</input>
+            <input id="nearby_places_no" name="nearby_places" type="radio" value="no" onclick="getLocation()">Não</input>
+
+            <input name="currentLatitude" id="currentLatitude" type="hidden"/>
+            <input name="currentLongitude" id="currentLongitude" type="text"/>
+        </div>
+
+        <input type="Submit" value="SEARCH">
+    </form>
 
     <div>
-        <label for="place_type">Tipo do estabelecimento: </label>
-        <select id="place_type" name="place_type">
-            <option value="">--</option>
-            <option value="airport">Aeroporto</option>
-            <option value="amusement_park">Parque de diversões</option>
-            <option value="art_gallery">Galeria de Arte</option>
-            <option value="bakery">Padaria</option>
-            <option value="bank">Banco</option>
-            <option value="bar">Barra</option>
-            <option value="beauty_salon">Salão de beleza</option>
-            <option value="bicycle_store">Loja de bicicletas</option>
-            <option value="book_store">Livraria</option>
-            <option value="bowling_alley">Pista de boliche</option>
-            <option value="cafe">Café</option>
-            <option value="campground">Área de camping</option>
-            <option value="car_dealer">Concessionária</option>
-            <option value="car_rental">Locadora de carros</option>
-            <option value="car_repair">Oficina de carro</option>
-            <option value="car_wash">Lavajato</option>
-            <option value="cemetery">Cemitério</option>
-            <option value="church">Igreja</option>
-            <option value="city_hall">Prefeitura</option>
-            <option value="clothing_store">Loja de roupas</option>
-            <option value="convenience_store">Loja de conveniência</option>
-            <option value="dentist"> Consultório Odontológico</option>
-            <option value="courthouse">Tribunal</option>
-            <option value="department_store">Loja de departamento</option>
-            <option value="doctor"> Consultório médico</option>
-            <option value="electronics_store">Loja de eletrônicos</option>
-            <option value="embassy">Embaixada</option>
-            <option value="establishment">Estabelecimento</option>
-            <option value="finance">Banco</option>
-            <option value="fire_station">Corpo de Bombeiros</option>
-            <option value="florist">Floricultura</option>
-            <option value="food">Restaurante/ lanchonete</option>
-            <option value="funeral_home">Funerária</option>
-            <option value="furniture_store">Loja de móveis</option>
-            <option value="gas_station">Posto de gasolina</option>
-            <option value="grocery_or_supermarket">Supermercado/ Mercado</option>
-            <option value="gym">Academia</option>
-            <option value="hair_care">Salão de beleza</option>
-            <option value="hardware_store">Loja de Informática</option>
-            <option value="home_goods_store">Loja de Móveis e Decoração</option>
-            <option value="hospital">Hospital</option>
-            <option value="insurance_agency">Seguradora</option>
-            <option value="jewelry_store">Joalheria</option>
-            <option value="laundry">Lavanderia</option>
-            <option value="lawyer">Escritório de advocacia</option>
-            <option value="library">Biblioteca</option>
-            <option value="liquor_store">Loja de bebidas</option>
-            <option value="local_government_office">Orgão Público</option>
-            <option value="locksmith">Chaveiro</option>
-            <option value="lodging">Alojamento</option>
-            <option value="movie_rental">Locadora de filme</option>
-            <option value="movie_theater">Cinema</option>
-            <option value="museum">Museu</option>
-            <option value="night_club">Boate</option>
-            <option value="parking">Estacionamento</option>
-            <option value="pet_store">Petshop</option>
-            <option value="pharmacy">Farmácia</option>
-            <option value="physiotherapist">Clínica de Fisioterapia</option>
-            <option value="place_of_worship">Lugar de Culto</option>
-            <option value="police">Delegacia</option>
-            <option value="post_office">Agência dos Correios</option>
-            <option value="real_estate_agency">Agência imobiliária</option>
-            <option value="restaurant">Restaurante</option>
-            <option value="school">Escola</option>
-            <option value="shoe_store">Loja de sapatos</option>
-            <option value="shopping_mall">Shopping</option>
-            <option value="spa">SPA</option>
-            <option value="stadium">Estádio</option>
-            <option value="storage">Armazém</option>
-            <option value="store">Loja</option>
-            <option value="synagogue">Sinagoga</option>
-            <option value="travel_agency">Agência de viagens</option>
-            <option value="university">Universidade</option>
-            <option value="veterinary_care">Clínica veterinária</option>
-            <option value="zoo">Jardim zoológico</option>
-        </select>
+        {% block content %}
+        {% endblock %}
     </div>
 
-    <div id="nearby_places">
-        <label for="nearby_places">Mostrar lugares próximos a mim </label>
-        <input name="nearby_places" type="radio" value="yes" checked="yes">Sim</input>
-        <input name="nearby_places" type="radio" value="no">Não</input>
-    </div>
-
-    <input type="Submit" value="SEARCH">
-</form>
-
-<div>
-    {% block content %}
-
-    {% endblock %}
-</div>
 </body>
 
 </html>
