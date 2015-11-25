@@ -7,7 +7,7 @@ To run the project you should:
 
 1. Install Python 3.4.3 or higher
 
-**We don't assure the software will work on a higher version. We recommend the use of Python version 3.4.3.**
+**We don't assure that the software will work on a higher version. We recommend the use of Python version 3.4.3.**
 
 Here is the download link of Python 3.4.3: https://www.python.org/downloads/release/python-343/
 
